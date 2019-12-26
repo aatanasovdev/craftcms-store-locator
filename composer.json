@@ -2,7 +2,7 @@
     "name": "aatanasov/craftcms-store-locator",
     "description": "This is a CraftCMS plugin that allows creating a store locator",
     "type": "craft-plugin",
-    "license": "MIT",
+    "license": "Craft",
     "authors": [
         {
             "name": "AAtanasov",
