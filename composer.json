@@ -1,0 +1,30 @@
+{
+    "name": "aatanasov/craftcms-store-locator",
+    "description": "This is a CraftCMS plugin that allows creating a store locator",
+    "type": "craft-plugin",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "AAtanasov",
+            "email": "aatanasovdev@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "support": {
+        "email": "aatanasovdev@gmail.com",
+    },
+    "require": {
+        "craftcms/cms": "^3.0.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "aatanasov\\storelocator\\": "src/"
+        }
+    },
+    "extra": {
+        "handle": "craftcms-store-locator",
+        "name": "Store locator",
+        "class": "aatanasov\\storelocator\\storeLocator"
+    }
+}
