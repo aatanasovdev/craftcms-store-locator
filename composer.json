@@ -23,7 +23,7 @@
         }
     },
     "extra": {
-        "handle": "craftcms-store-locator",
+        "handle": "store-locator",
         "name": "Store locator",
         "class": "aatanasov\\storelocator\\StoreLocator"
     }

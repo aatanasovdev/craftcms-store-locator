@@ -26,7 +26,7 @@ class StoreLocator extends \craft\base\Plugin
     protected function settingsHtml()
     {
         return Craft::$app->view->renderTemplate(
-            'craftcms-store-locator/settings',
+            'store-locator/settings',
             [
                 'settings' => $this->getSettings()
             ]
