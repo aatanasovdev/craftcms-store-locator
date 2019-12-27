@@ -1,0 +1,18 @@
+{% extends '_layouts/cp' %}
+{% set title = title %}
+{% set fullPageForm = true %}
+
+{% import '_includes/forms' as forms %}
+
+{% block content %}
+ 	{{ csrfInput() }}
+    {{ actionInput(action) }}
+    {{ redirectInput(redirect) }}
+
+	{{ forms.textField({
+	    first: true,
+	    label: "Title"|t('store-locator'),
+	    name: 'title',
+	    value: entry.title
+	}) }}   
+{% endblock %}

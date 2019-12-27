@@ -65,6 +65,8 @@ class StoreLocator extends \craft\base\Plugin
                 $handleName = PluginHelper::getHandleName();
 
                 $event->rules[$handleName] = $handleName . '/stores/index';
+                $event->rules[$handleName . '/stores/new'] = $handleName . '/stores/edit';
+                $event->rules[$handleName . '/stores/<storeId:\d+>'] = $handleName . '/stores/edit';
             }
         );        
     }    
