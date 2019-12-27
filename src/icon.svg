@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
+  <defs>
+    <style>
+      .cls-1 {
+        font-size: 200px;
+        fill: #ff8a00;
+        font-family: Impact;
+      }
+    </style>
+  </defs>
+  <text id="SL" class="cls-1" x="11.889" y="179.556">SL</text>
+</svg>
