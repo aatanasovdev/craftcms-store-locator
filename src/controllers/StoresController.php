@@ -53,10 +53,12 @@ class StoresController extends Controller
     /**
      * Save a new store or an exisitng one.
      *
-     * @return 
+     * @return mixed
      */ 
     public function actionSave() 
     {   
+        $this->requirePostRequest();
+
         $request = Craft::$app->getRequest();
 
         if(!empty(Craft::$app->request->getBodyParam('entryId'))) {
@@ -84,6 +86,34 @@ class StoresController extends Controller
         }
 
         Craft::$app->getSession()->setNotice(PluginHelper::t('Store saved.'));
+
+        return $this->redirectToPostedUrl($entry);
+    }
+
+    /**
+     * Delete a store.
+     *
+     * @return mixed
+     */    
+    public function actionDelete() 
+    {
+        $this->requirePostRequest();
+
+        $request = Craft::$app->getRequest();
+
+        $entry = Craft::$app->getElements()->getElementById(Craft::$app->request->getBodyParam('entryId'));
+
+        if (!Craft::$app->getElements()->deleteElement($entry)) {
+            Craft::$app->getSession()->setError(PluginHelper::t('Couldn’t delete store.'));
+
+            Craft::$app->getUrlManager()->setRouteParams([
+                'entry' => $entry
+            ]);
+
+            return null;
+        }
+
+        Craft::$app->getSession()->setNotice(PluginHelper::t('Store deleted.'));
 
         return $this->redirectToPostedUrl($entry);
     }

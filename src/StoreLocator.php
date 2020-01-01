@@ -8,7 +8,6 @@ use aatanasov\storelocator\models\Settings;
 use aatanasov\storelocator\helpers\PluginHelper;
 use aatanasov\storelocator\Store;
 use aatanasov\storelocator\elements\Store as StoreElement;
-use aatanasov\storelocator\fields\StoreFields as StoreFields;
 
 use craft\events\RegisterUrlRulesEvent;
 use craft\events\RegisterComponentTypesEvent;
@@ -82,6 +81,7 @@ class StoreLocator extends \craft\base\Plugin
 
                 $event->rules[$handle] = $handle . '/stores/index';
                 $event->rules[$handle . '/stores/new'] = $handle . '/stores/edit';
+                $event->rules[$handle . '/stores/delete'] = $handle . '/stores/delete';
                 $event->rules[$handle . '/stores/<storeId:\d+>'] = $handle . '/stores/edit';
             }
         );        

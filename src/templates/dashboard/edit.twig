@@ -4,6 +4,28 @@
 
 {% import '_includes/forms' as forms %}
 
+
+	
+{% block actionButton %}
+    {% if fullPageForm %}
+	    <div class="btngroup">
+	        <input type="submit" class="btn submit" value="{{ 'Save'|t('store-locator') }}">
+            {% if entry.id %}
+		        <div class="btn submit menubtn"></div>
+		        <div class="menu">
+		                <ul>
+		                    <li>
+		                        <a class="formsubmit error" data-action="store-locator/stores/delete" data-confirm="{{ 'Are you sure you want to delete this store?'|t('store-locator') }}" data-redirect="{{ 'store-locator' | hash }}">
+		                            {{ 'Delete'|t('store-locator') }}
+		                        </a>
+		                    </li>
+		                </ul>
+		        </div>
+		    {% endif %}
+	    </div>
+    {% endif %}
+{% endblock %}
+
 {% block content %}
  	{{ csrfInput() }}
     {{ actionInput(action) }}
