@@ -76,7 +76,7 @@ class StoresController extends Controller
 
         if (!Craft::$app->elements->saveElement($entry)) {
 
-            Craft::$app->getSession()->setError(PluginHelper::t('Couldn’t save store.'));
+            PluginHelper::setError('Couldn’t save store.');
 
             Craft::$app->getUrlManager()->setRouteParams([
                 'entry' => $entry
@@ -85,7 +85,7 @@ class StoresController extends Controller
             return null;
         }
 
-        Craft::$app->getSession()->setNotice(PluginHelper::t('Store saved.'));
+        PluginHelper::setNotice('Store saved.');
 
         return $this->redirectToPostedUrl($entry);
     }
@@ -104,7 +104,7 @@ class StoresController extends Controller
         $entry = Craft::$app->getElements()->getElementById(Craft::$app->request->getBodyParam('entryId'));
 
         if (!Craft::$app->getElements()->deleteElement($entry)) {
-            Craft::$app->getSession()->setError(PluginHelper::t('Couldn’t delete store.'));
+            PluginHelper::setError('Couldn’t delete store.');
 
             Craft::$app->getUrlManager()->setRouteParams([
                 'entry' => $entry
@@ -113,7 +113,7 @@ class StoresController extends Controller
             return null;
         }
 
-        Craft::$app->getSession()->setNotice(PluginHelper::t('Store deleted.'));
+        PluginHelper::setNotice('Store deleted.');
 
         return $this->redirectToPostedUrl($entry);
     }

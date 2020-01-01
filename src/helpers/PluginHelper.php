@@ -23,7 +23,7 @@ class PluginHelper
 	 * @return $pluginHandleName
      * @see Craft::t()
      */
-    public static function t($message, $params = [], $language = null)
+    public static function t(string $message,array $params = [],string $language = null)
     {
         return Craft::t(self::HANDLE, $message, $params, $language);
     }
@@ -36,5 +36,28 @@ class PluginHelper
     public static function handle() 
     {	
     	return self::HANDLE;
-    }	
+    }
+
+    /**
+     * Set a notice.
+     *
+     * @param string $message
+     * @return void
+     */    
+    public static function setNotice(string $message) 
+    {    
+        Craft::$app->getSession()->setNotice(Craft::t('store-locator', $message));
+    }
+
+    /**
+     * Set an error message.
+     *
+     * @param string $message
+     * @return void
+     */    
+    public static function setError(string $message) 
+    {    
+        Craft::$app->getSession()->setError(Craft::t('store-locator', $message));
+    }    
+
 }
