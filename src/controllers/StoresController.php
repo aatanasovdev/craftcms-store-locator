@@ -33,14 +33,11 @@ class StoresController extends Controller
 	 */	
 	public function actionEdit(StoreElement $entry = null)
 	{	
-		$variables['entry'] = $entry;
-
-		if(empty($variables['entry'])) {
-			$variables['entry'] = new StoreElement();
+		if(empty($entry)) {
+			$entry = new StoreElement();
 		}
 
-		$variables['request'] = Craft::$app->getRequest();
-
+		$variables['entry'] = $entry;
 		$variables['title'] = 'Stores';
 		$variables['action'] = PluginHelper::getHandleName() . '/stores/save';
 		$variables['redirect'] = PluginHelper::getHandleName() . '/';
