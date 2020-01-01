@@ -7,6 +7,7 @@ class PluginHelper
 
     /**
      * Plugin handle name.
+	 *
      * @var string
      */	
 	private static $pluginHandleName = 'store-locator';

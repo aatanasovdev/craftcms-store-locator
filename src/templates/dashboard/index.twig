@@ -1,7 +1,8 @@
 {% extends '_layouts/elementindex' %}
 {% set title = 'Stores' %}
 {% set elementType = 'aatanasov\\storelocator\\elements\\Store' %}
+{% set selectedSubnavItem = 'stores' %}
 
 {% block actionButton %}
-    <a href="#" class="submit btn add icon">{{ "New Store"|t('store-locator') }}</a>
+    <a href="store-locator/stores/new" class="submit btn add icon">{{ "New Store"|t('store-locator') }}</a>
 {% endblock %}

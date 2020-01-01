@@ -10,9 +10,18 @@
     {{ redirectInput(redirect) }}
 
 	{{ forms.textField({
-	    first: true,
 	    label: "Title"|t('store-locator'),
+	    instructions: "Enter the name of this store."|t('store-locator'),
 	    name: 'title',
-	    value: entry.title
-	}) }}   
+	    value: entry.title,
+	    errors: entry.getErrors('title')
+	}) }}  		 
+
+	{{ forms.textField({
+	    label: "Address"|t('store-locator'),
+	    instructions: "Enter the address of this store."|t('store-locator'),
+	    name: 'address',
+	    value: entry.address,
+	    errors: entry.getErrors('address')
+	}) }}  	 
 {% endblock %}
