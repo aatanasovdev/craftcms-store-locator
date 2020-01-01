@@ -8,7 +8,7 @@ use aatanasov\storelocator\models\Settings;
 use aatanasov\storelocator\helpers\PluginHelper;
 use aatanasov\storelocator\Store;
 use aatanasov\storelocator\elements\Store as StoreElement;
-use aatanasov\storelocator\fields\Store as StoreFields;
+use aatanasov\storelocator\fields\StoreFields as StoreFields;
 
 use craft\events\RegisterUrlRulesEvent;
 use craft\events\RegisterComponentTypesEvent;
@@ -41,8 +41,6 @@ class StoreLocator extends \craft\base\Plugin
 
         $this->_registerDashboardRoutes();
         $this->_registerElementTypes();
-        $this->_registerFieldTypes();
-
     }
     /**
      * Enable the plugin settings on the dashboard.
@@ -99,17 +97,5 @@ class StoreLocator extends \craft\base\Plugin
         Event::on(Elements::class, Elements::EVENT_REGISTER_ELEMENT_TYPES, function(RegisterComponentTypesEvent $e) {
             $e->types[] = StoreElement::class;
         });
-    }
-
-    /**
-     * Register the custom Stores fields type.
-     *
-     * @return void
-     */ 
-    private function _registerFieldTypes()
-    {
-        Event::on(Fields::class, Fields::EVENT_REGISTER_FIELD_TYPES, function(RegisterComponentTypesEvent $event) {
-            $event->types[] = EventsField::class;
-        });
-    }    
+    }   
 }
