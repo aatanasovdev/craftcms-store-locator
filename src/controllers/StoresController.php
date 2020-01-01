@@ -51,7 +51,7 @@ class StoresController extends Controller
     }
 
     /**
-     * Save a store.
+     * Save a new store or an exisitng one.
      *
      * @return 
      */ 
@@ -74,7 +74,7 @@ class StoresController extends Controller
 
         if (!Craft::$app->elements->saveElement($entry)) {
 
-            Craft::$app->getSession()->setError(Craft::t('store-locator', 'Couldn’t save store.'));
+            Craft::$app->getSession()->setError(PluginHelper::t('Couldn’t save store.'));
 
             Craft::$app->getUrlManager()->setRouteParams([
                 'entry' => $entry
@@ -82,6 +82,8 @@ class StoresController extends Controller
 
             return null;
         }
+
+        Craft::$app->getSession()->setNotice(PluginHelper::t('Store saved.'));
 
         return $this->redirectToPostedUrl($entry);
     }
