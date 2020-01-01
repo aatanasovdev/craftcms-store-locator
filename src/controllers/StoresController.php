@@ -35,7 +35,7 @@ class StoresController extends Controller
     public function actionEdit(int $storeId = null, StoreElement $entry = null)
     {
         if(!empty($storeId)) {
-            $entry = Craft::$app->getElements()->getElementById($storeId);
+            $entry = StoreElement::findOne($storeId);
         }
 
         if(empty($entry)) {

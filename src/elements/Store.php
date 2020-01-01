@@ -98,12 +98,12 @@ class Store extends Element
     /**
      * Get element by ID from a request.
      *
-     * @return Element
+     * @return mixed
      */    
     public static function getRequestEntry() 
     {    
         if(!empty(Craft::$app->request->getBodyParam('entryId'))) {
-            return Craft::$app->getElements()->getElementById(Craft::$app->request->getBodyParam('entryId'));
+            return self::findOne(Craft::$app->request->getBodyParam('entryId'));
         }
 
         return;
