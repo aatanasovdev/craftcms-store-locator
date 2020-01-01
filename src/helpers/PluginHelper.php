@@ -2,23 +2,39 @@
 
 namespace aatanasov\storelocator\helpers;
 
+use Craft;
+
 class PluginHelper
 {
-
     /**
      * Plugin handle name.
 	 *
-     * @var string
+     * @cons string
      */	
-	private static $pluginHandleName = 'store-locator';
+	CONST HANDLE = 'store-locator';
 
 	/**
-	 * Get plugin handle name.
+	 * Translate a given string.
 	 *
+     * @param $message
+     * @param array $params
+     * @param null $language
+     *
 	 * @return $pluginHandleName
-	 */	
-	static function getHandleName() 
-	{	
-		return self::$pluginHandleName;
-	}	
+     * @see Craft::t()
+     */
+    public static function t($message, $params = [], $language = null)
+    {
+        return Craft::t(self::HANDLE, $message, $params, $language);
+    }
+
+    /**
+     * Get the handle name
+     *
+     * @return string
+     */	
+    public static function handle() 
+    {	
+    	return self::HANDLE;
+    }	
 }

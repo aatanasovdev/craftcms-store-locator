@@ -9,6 +9,8 @@
     {{ actionInput(action) }}
     {{ redirectInput(redirect) }}
 
+    {{craft.config|json_encode}}
+
 	{{ forms.textField({
 	    label: "Title"|t('store-locator'),
 	    instructions: "Enter the name of this store."|t('store-locator'),

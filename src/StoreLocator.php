@@ -62,7 +62,7 @@ class StoreLocator extends \craft\base\Plugin
     protected function settingsHtml()
     {
         return Craft::$app->view->renderTemplate(
-            PluginHelper::getHandleName() . '/dashboard/settings',
+            PluginHelper::handle() . '/dashboard/settings',
             [
                 'settings' => $this->getSettings()
             ]
@@ -80,11 +80,11 @@ class StoreLocator extends \craft\base\Plugin
             UrlManager::class,
             UrlManager::EVENT_REGISTER_CP_URL_RULES,
             function(RegisterUrlRulesEvent $event) {
-                $handleName = PluginHelper::getHandleName();
+                $handle = PluginHelper::handle();
 
-                $event->rules[$handleName] = $handleName . '/stores/index';
-                $event->rules[$handleName . '/stores/new'] = $handleName . '/stores/edit';
-                $event->rules[$handleName . '/stores/<storeId:\d+>'] = $handleName . '/stores/edit';
+                $event->rules[$handle] = $handle . '/stores/index';
+                $event->rules[$handle . '/stores/new'] = $handle . '/stores/edit';
+                $event->rules[$handle . '/stores/<storeId:\d+>'] = $handle . '/stores/edit';
             }
         );        
     }    

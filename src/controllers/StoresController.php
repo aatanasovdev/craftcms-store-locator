@@ -22,7 +22,7 @@ class StoresController extends Controller
 	 */	
 	public function actionIndex() 
 	{	
-		return $this->renderTemplate(PluginHelper::getHandleName() . '/dashboard/index');
+		return $this->renderTemplate(PluginHelper::handle() . '/dashboard/index');
 	}
 
 	/**
@@ -39,10 +39,10 @@ class StoresController extends Controller
 
 		$variables['entry'] = $entry;
 		$variables['title'] = 'Stores';
-		$variables['action'] = PluginHelper::getHandleName() . '/stores/save';
-		$variables['redirect'] = PluginHelper::getHandleName() . '/';
+		$variables['action'] = PluginHelper::handle() . '/stores/save';
+		$variables['redirect'] = PluginHelper::handle() . '/';
 		
-		return $this->renderTemplate(PluginHelper::getHandleName() . '/dashboard/edit', $variables);		
+		return $this->renderTemplate(PluginHelper::handle() . '/dashboard/edit', $variables);		
 	}
 
 	/**
