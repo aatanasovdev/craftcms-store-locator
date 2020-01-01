@@ -4,9 +4,13 @@ namespace aatanasov\storelocator\elements;
 use Craft;
 use craft\base\Element;
 use craft\elements\db\ElementQueryInterface;
+use craft\helpers\UrlHelper;
+
+use yii\base\Exception;
 
 use aatanasov\storelocator\records\StoreRecord;
 use aatanasov\storelocator\elements\db\StoreQuery;
+use aatanasov\storelocator\helpers\PluginHelper;
 
 class Store extends Element
 {
@@ -116,7 +120,7 @@ class Store extends Element
         return [
             [
                 'key' => '*',
-                'label' => Craft::t('store-locator', 'All Stores'),
+                'label' => PluginHelper::t('All Stores'),
                 'criteria' => []
             ]
         ];
@@ -138,8 +142,8 @@ class Store extends Element
     protected static function defineTableAttributes(): array
     {
         return [
-            'title' => ['label' => Craft::t('store-locator', 'Title')],
-            'address' => ['label' => Craft::t('store-locator', 'Address')],
+            'title' => ['label' => PluginHelper::t('Title')],
+            'address' => ['label' => PluginHelper::t('Address')],
         ];
     }
 
@@ -157,19 +161,37 @@ class Store extends Element
     }    
 
     /**
-     * Add a record to the custom element database table.
+     * Add and save a record to the custom element database table.
      *
      * @param bool $isNew
      * @return trigger afterSave Element event
      */ 
     public function afterSave(bool $isNew)
     {
-        $record = new StoreRecord();
-        $record->id = $this->id;
-        $record->address = $this->address;
+        if (!$isNew) {
+            $record = StoreRecord::findOne($this->id);
 
+            if (!$record) {
+                throw new Exception('Invalid product ID: ' . $this->id);
+            }
+        }
+
+        if(empty($record)) {
+            $record = new StoreRecord();
+            $record->id = $this->id;            
+        }
+
+        $record->address = $this->address;
         $record->save();
 
         return parent::afterSave($isNew);         
     }
+
+    /**
+     * @inheritdoc
+     */
+    public function getCpEditUrl(): string
+    {
+        return UrlHelper::cpUrl(PluginHelper::handle() . '/stores/' . $this->id);
+    }    
 }

@@ -4,6 +4,9 @@ namespace aatanasov\storelocator\elements\db;
 use craft\db\Query;
 use craft\elements\db\ElementQuery;
 use craft\helpers\Db;
+
+use yii\db\ActiveQueryInterface;
+
 use aatanasov\storelocator\elements\Store;
 
 class StoreQuery extends ElementQuery
@@ -34,6 +37,15 @@ class StoreQuery extends ElementQuery
 
         return $this;
     }      
+    /**
+     * Get a store from the datbase.
+     *
+     * @return ActiveQueryInterface
+     */    
+    public function getElement(): ActiveQueryInterface
+    {
+        return $this->hasOne(Element::class, ['id' => 'id']);
+    }
 
     /**
      * Prepares the custom fields of the store.
@@ -53,5 +65,5 @@ class StoreQuery extends ElementQuery
         }        
 
         return parent::beforePrepare();
-    }    
+    }     
 }

@@ -4,6 +4,7 @@ namespace aatanasov\storelocator\controllers;
 use Craft;
 use craft\web\Controller;
 use craft\base\Element;
+use craft\helpers\UrlHelper;
 
 use aatanasov\storelocator\helpers\PluginHelper;
 use aatanasov\storelocator\elements\Store as StoreElement;
@@ -31,14 +32,18 @@ class StoresController extends Controller
 	 * @param int|null
 	 * @return View
 	 */	
-	public function actionEdit(StoreElement $entry = null)
-	{	
+	public function actionEdit(int $storeId = null, StoreElement $entry = null)
+	{
+		if(!empty($storeId)) {
+			$entry = Craft::$app->getElements()->getElementById($storeId);
+		}
+
 		if(empty($entry)) {
 			$entry = new StoreElement();
 		}
 
 		$variables['entry'] = $entry;
-		$variables['title'] = 'Stores';
+		$variables['title'] = PluginHelper::t('Stores');
 		$variables['action'] = PluginHelper::handle() . '/stores/save';
 		$variables['redirect'] = PluginHelper::handle() . '/';
 		
@@ -54,7 +59,13 @@ class StoresController extends Controller
 	{	
 		$request = Craft::$app->getRequest();
 
-		$entry = new StoreElement();
+		if(!empty(Craft::$app->request->getBodyParam('entryId'))) {
+			$entry = Craft::$app->getElements()->getElementById(Craft::$app->request->getBodyParam('entryId'));
+		}
+
+		if(empty($entry)) {
+			$entry = new StoreElement();	
+		}
 
 		$entry->address = Craft::$app->request->getBodyParam('address');
 		$entry->title = Craft::$app->request->getBodyParam('title');
