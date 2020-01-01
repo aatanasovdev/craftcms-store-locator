@@ -96,6 +96,20 @@ class Store extends Element
     }
 
     /**
+     * Get element by ID from a request.
+     *
+     * @return Element
+     */    
+    public static function getRequestEntry() 
+    {    
+        if(!empty(Craft::$app->request->getBodyParam('entryId'))) {
+            return Craft::$app->getElements()->getElementById(Craft::$app->request->getBodyParam('entryId'));
+        }
+
+        return;
+    }    
+
+    /**
      * Set the rules to the element fields.
      *
      * @return array

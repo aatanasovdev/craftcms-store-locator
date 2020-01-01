@@ -61,9 +61,7 @@ class StoresController extends Controller
 
         $request = Craft::$app->getRequest();
 
-        if(!empty(Craft::$app->request->getBodyParam('entryId'))) {
-            $entry = Craft::$app->getElements()->getElementById(Craft::$app->request->getBodyParam('entryId'));
-        }
+        $entry = StoreElement::getRequestEntry();
 
         if(empty($entry)) {
             $entry = new StoreElement();
@@ -82,7 +80,7 @@ class StoresController extends Controller
                 'entry' => $entry
             ]);
 
-            return null;
+            return;
         }
 
         PluginHelper::setNotice('Store saved.');
@@ -101,7 +99,7 @@ class StoresController extends Controller
 
         $request = Craft::$app->getRequest();
 
-        $entry = Craft::$app->getElements()->getElementById(Craft::$app->request->getBodyParam('entryId'));
+        $entry = StoreElement::getRequestEntry();
 
         if (!Craft::$app->getElements()->deleteElement($entry)) {
             PluginHelper::setError('Couldn’t delete store.');
@@ -110,7 +108,7 @@ class StoresController extends Controller
                 'entry' => $entry
             ]);
 
-            return null;
+            return;
         }
 
         PluginHelper::setNotice('Store deleted.');
