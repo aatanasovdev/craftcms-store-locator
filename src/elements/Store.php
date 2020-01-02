@@ -85,9 +85,8 @@ class Store extends Element
     }
 
     /**
-     * Define the main tabs of the index stores admin page.
+     * Define the main query of the element.
      *
-     * @param string $content
      * @return StoreQuery
      */  
     public static function find(): ElementQueryInterface
@@ -102,8 +101,10 @@ class Store extends Element
      */    
     public static function getRequestEntry() 
     {    
-        if(!empty(Craft::$app->request->getBodyParam('entryId'))) {
-            return self::findOne(Craft::$app->request->getBodyParam('entryId'));
+        $entryId = Craft::$app->request->getBodyParam('entryId');
+
+        if(!empty($entryId)) {
+            return self::findOne($entryId);
         }
 
         return;
@@ -114,7 +115,7 @@ class Store extends Element
      *
      * @return array
      */     
-    public function rules()
+    public function rules(): array
     {
         $rules = parent::rules();
 

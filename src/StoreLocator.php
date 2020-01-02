@@ -97,5 +97,5 @@ class StoreLocator extends \craft\base\Plugin
         Event::on(Elements::class, Elements::EVENT_REGISTER_ELEMENT_TYPES, function(RegisterComponentTypesEvent $e) {
             $e->types[] = StoreElement::class;
         });
-    }   
+    }
 }
