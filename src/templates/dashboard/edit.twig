@@ -2,6 +2,7 @@
 {% set title = title %}
 {% set fullPageForm = true %}
 
+{% do view.registerAssetBundle('aatanasov\\storelocator\\assetbundles\\GoogleMapsAsset') %}
 {% do view.registerAssetBundle('aatanasov\\storelocator\\assetbundles\\StoresAdminAsset') %}
 
 {% import '_includes/forms' as forms %}
